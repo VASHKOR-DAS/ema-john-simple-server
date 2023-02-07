@@ -21,6 +21,13 @@ async function run() {
         const productCollection = client.db('emaJohn').collection('products')
 
         app.get('/products', async (req, res) => {
+            // get data by pagination
+            const page = req.query.page;
+            const size = req.query.size;
+            console.log(page, size);
+
+
+
             const query = {};
             const cursor = productCollection.find(query);
 
