@@ -23,3 +23,7 @@ Click Database > Connect > Connect your application > Copy the syntax
 
 replace <username> & <password> by process.env.
 
+ctrl d = single same file select
+ctrl shift l = all same file select
+
+

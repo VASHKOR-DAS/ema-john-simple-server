@@ -15,6 +15,32 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@clu
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
+// get all products from db
+async function run() {
+    try {
+        const productCollection = client.db('emaJohn').collection('products')
+
+        app.get('/products', async (req, res) => {
+            const query = {};
+            const cursor = productCollection.find(query);
+
+            //if get only 10 data
+            // const products = await cursor.limit(10).toArray();
+            const products = await cursor.toArray();
+
+            // pagination korte hole amader 1ta count lagbe
+            const count = await productCollection.estimatedDocumentCount();
+            res.send({ count, products }); // count & products ta object hisebe pathiyechi 
+        })
+
+
+    }
+    finally {
+
+    }
+}
+run().catch(err => console.error(err))
+
 
 
 
