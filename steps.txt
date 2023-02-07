@@ -1,0 +1,25 @@
+npm init -y
+
+npm i express cors mongodb dotenv
+
+git init
+
+create a file .gitignore & inside write
+node_modules
+.env
+
+
+write a script on package.json
+"start": "node index.js",
+bcz, some of website need it by default start on server.
+
+
+mongodb settings
+Click Database Access
+Click  ADD NEW DATABASE USER //for create a new user
+Click Built-in Role > Read and write to any database
+Backspace
+Click Database > Connect > Connect your application > Copy the syntax
+
+replace <username> & <password> by process.env.
+
