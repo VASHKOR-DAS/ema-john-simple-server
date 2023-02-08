@@ -22,8 +22,8 @@ async function run() {
 
         app.get('/products', async (req, res) => {
             // get data by pagination
-            const page = req.query.page;
-            const size = req.query.size;
+            const page = parseInt(req.query.page); //parseInt na korleo hoy
+            const size = parseInt(req.query.size);
             console.log(page, size);
 
 
@@ -33,7 +33,9 @@ async function run() {
 
             //if get only 10 data
             // const products = await cursor.limit(10).toArray();
-            const products = await cursor.toArray();
+            
+            // joto gulo data skip korte chai, seta r, koto porjonto dekhate chai, skip er value ta Integer a dite hoy
+            const products = await cursor.skip(page*size).limit(size).toArray();
 
             // pagination korte hole amader 1ta count lagbe
             const count = await productCollection.estimatedDocumentCount();
